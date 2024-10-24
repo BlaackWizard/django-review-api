@@ -1,5 +1,5 @@
-from factory.django import DjangoModelFactory
 import factory
+from factory.django import DjangoModelFactory
 
 from core.apps.products.models import Product
 

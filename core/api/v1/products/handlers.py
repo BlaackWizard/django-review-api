@@ -1,12 +1,24 @@
 from django.http import HttpRequest
-from ninja import Query, Router
+from ninja import (
+    Query,
+    Router,
+)
 
-from core.api.filters import PaginationIn, PaginationOut
-from core.api.schemas import ApiResponse, ListPaginatedResponse
+from core.api.filters import (
+    PaginationIn,
+    PaginationOut,
+)
+from core.api.schemas import (
+    ApiResponse,
+    ListPaginatedResponse,
+)
 from core.api.v1.products.filters import ProductFilter
 from core.api.v1.products.schemas import ProductSchema
-from core.apps.products.services.products import (BaseProductServices,
-                                                  ORMProductServices)
+from core.apps.products.services.products import (
+    BaseProductServices,
+    ORMProductServices,
+)
+
 
 router = Router(tags=['Products'])
 
