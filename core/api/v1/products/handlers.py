@@ -14,6 +14,7 @@ from core.api.schemas import (
 )
 from core.api.v1.products.filters import ProductFilter
 from core.api.v1.products.schemas import ProductSchema
+from core.apps.customers.containers import get_container
 from core.apps.products.services.products import (
     BaseProductServices,
     ORMProductServices,
@@ -29,7 +30,8 @@ def get_product_list_handler(
     filters: Query[ProductFilter],
     pagination_in: Query[PaginationIn],
 ) -> ApiResponse[ListPaginatedResponse[ProductSchema]]:
-    service: BaseProductServices = ORMProductServices()
+    container = get_container()
+    service: BaseProductServices = container.resolve(BaseProductServices)
     product_list = service.get_product_list(filters=filters, pagination=pagination_in)
     product_count = service.get_product_count(filters=filters)
     items = [ProductSchema.from_entity(obj) for obj in product_list]
