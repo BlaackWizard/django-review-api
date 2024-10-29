@@ -1,7 +1,8 @@
 from ninja import Router
 
-from .products.handlers import router as product_router
 from .customers.handlers import router as customer_router
+from .products.handlers import router as product_router
+
 
 router = Router(tags=['v1'])
 

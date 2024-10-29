@@ -28,6 +28,7 @@ def test_products_count_exist(product_service: BaseProductServices):
 
     assert products_count == expected_count
 
+
 @pytest.mark.django_db
 def test_get_zero_products(product_service: BaseProductServices):
     """
@@ -36,6 +37,7 @@ def test_get_zero_products(product_service: BaseProductServices):
     product_list = product_service.get_product_list(ProductFilter(), PaginationIn())
 
     assert product_list == [], f"{product_list=}"
+
 
 @pytest.mark.django_db
 def test_get_product_list(product_service: BaseProductServices):
@@ -51,5 +53,3 @@ def test_get_product_list(product_service: BaseProductServices):
 
     assert len(fetched_titles) == expected_count, f'{fetched_titles=}'
     assert product_titles == fetched_titles, f'{product_titles=}'
-
-

@@ -14,6 +14,7 @@ class BaseAuthServices(ABC):
     customer_service: BaseCustomerServices
     code_service: BaseCodeServices
     sender_service: BaseSendersServices
+
     @abstractmethod
     def authorize(self, phone: str):
         ...
@@ -22,11 +23,13 @@ class BaseAuthServices(ABC):
     def confirm(self, code: str, phone: str):
         ...
 
+
 class AuthService(BaseAuthServices):
     def authorize(self, phone: str):
         customer = self.customer_service.get_or_create(phone)
         code = self.code_service.generate_code(customer)
         self.sender_service.send_code(code=code, customer=customer)
+
     def confirm(self, code: str, phone: str):
         customer = self.customer_service.get(phone)
         self.code_service.validate_code(code, customer)

@@ -26,9 +26,11 @@ class Customer(models.Model):
     )
 
     def to_entity(self):
-        return CustomerEntity(phone=self.phone,created_at=self.created_at,)
+        return CustomerEntity(phone=self.phone, created_at=self.created_at)
+
     def __str__(self):
         return self.phone
+
     class Meta:
         verbose_name = "Customer"
         verbose_name_plural = "Customers"
